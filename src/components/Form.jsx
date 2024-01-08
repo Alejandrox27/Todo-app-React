@@ -1,6 +1,7 @@
 import { useState } from "react";
+import Swal from "sweetalert2";
 
-const Form = () => {
+const Form = ({ addTodo }) => {
 
     const [todo, setTodo] = useState({
         title: "Todo 01",
@@ -14,8 +15,30 @@ const Form = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if(!title.trim() || !description.trim()){
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Fill all the blanks!"
+              });
+              return
+        }
+
+        addTodo({
+            id: Date.now(),
+            ...todo,
+            state: state === "Completed"
+        })
+
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Todo added succesfull",
+            showConfirmButton: false,
+            timer: 1500
+          });
         
-        console.log(title, description, state, priority);
     };
 
     const handleChange = e => {
@@ -57,7 +80,7 @@ const Form = () => {
                 <option value="Todo">To do</option>
                 <option value="completed">Completed</option>
             </select>
-            <button type="submit" className="btn btn-primary">Process</button>
+            <button type="submit" className="btn btn-primary">Add ToDo</button>
         </form>
         </>
     );

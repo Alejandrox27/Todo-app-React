@@ -28,12 +28,16 @@ const initialStateTodo = [
 
 const App = () => {
 
-  const [todos, setTodo] = useState(initialStateTodo)
+  const [todos, setTodos] = useState(initialStateTodo)
+
+  const addTodo = todo => {
+    setTodos([...todos, todo])
+  }
 
   return (
     <div className="container mb-2">
       <h1 className="ny-5">Forms</h1>
-      <Form />
+      <Form addTodo={addTodo} />
       <Todos todos={todos} />
     </div>
   )
