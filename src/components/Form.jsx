@@ -28,7 +28,7 @@ const Form = ({ addTodo }) => {
         addTodo({
             id: Date.now(),
             ...todo,
-            state: state === "Completed"
+            state: state === "completed"
         })
 
         Swal.fire({

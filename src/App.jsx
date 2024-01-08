@@ -31,6 +31,7 @@ const App = () => {
   const [todos, setTodos] = useState(initialStateTodo)
 
   const addTodo = todo => {
+    console.log(todo);
     setTodos([...todos, todo])
   }
 
