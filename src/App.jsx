@@ -31,15 +31,32 @@ const App = () => {
   const [todos, setTodos] = useState(initialStateTodo)
 
   const addTodo = todo => {
-    console.log(todo);
     setTodos([...todos, todo])
+  }
+
+  const deleteTodo = id => {
+    const newArray = todos.filter(todo => todo.id !== id);
+
+    setTodos(newArray)
+  }
+
+  const updateTodo = id => {
+    const newArray = todos.map(todo => {
+      if(todo.id === id){
+        todo.state = !todo.state;
+      }
+
+      return todo;
+    })
+
+    setTodos(newArray)
   }
 
   return (
     <div className="container mb-2">
       <h1 className="ny-5">Forms</h1>
       <Form addTodo={addTodo} />
-      <Todos todos={todos} />
+      <Todos todos={todos} deleteTodo={deleteTodo} updateTodo={updateTodo} />
     </div>
   )
 };
