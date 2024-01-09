@@ -43,7 +43,6 @@ const Form = ({ addTodo }) => {
 
     const handleChange = e => {
         const {name, type, checked, value} = e.target
-        console.log(e.target)
 
         setTodo({
             ...todo, 
